@@ -1,4 +1,4 @@
-package constant
+package errs
 
 type Err string
 

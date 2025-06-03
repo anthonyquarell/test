@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/mechta-market/gotemplate/internal/constant"
 	"io"
 	"log/slog"
 	"net/http"
@@ -18,7 +19,6 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 
 	"github.com/mechta-market/gotemplate/internal/config"
-	"github.com/mechta-market/gotemplate/internal/constant"
 )
 
 type App struct {
@@ -109,13 +109,13 @@ func (a *App) Init() {
 			}{
 				{
 					"GET", "/tst", func(w http.ResponseWriter, r *http.Request, _ map[string]string) {
-						slog.Error("test error", "error", errors.New("test error"))
-					},
+					slog.Error("test error", "error", errors.New("test error"))
+				},
 				},
 				// examples:
-				//{"POST", "/route/register", handlerHttpRouteRegister.Register},
-				//{"GET", "/route/{id}/link", handlerHttpRouteRegister.GetLink},
-				//{"POST", "/ord_shop_change", handlerHttpOrdShopChange.Set},
+				// {"POST", "/route/register", handlerHttpRouteRegister.Register},
+				// {"GET", "/route/{id}/link", handlerHttpRouteRegister.GetLink},
+				// {"POST", "/ord_shop_change", handlerHttpOrdShopChange.Set},
 			}
 			for _, h := range httpHandlers {
 				err = mux.HandlePath(h.method, h.path, h.handler)
